@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "3.3 Postman",
+			"path": "../3.3 Postman"
+		},
+		{
+			"name": "3.4 Middleware",
+			"path": "../3.4 Middleware"
+		},
+		{
+			"name": "3.5 Secrets Project",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

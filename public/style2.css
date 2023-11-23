@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    /* fonts */
+    --font-raleway: Raleway;
+    --font-source-sans-3: "Source Sans 3";
+    --font-roboto: Roboto;
+  
+    /* font sizes */
+    --font-size-5xl: 24px;
+  
+    /* Colors */
+    --color-white: #fff;
+    --black: #000;
+    --lime: #c5f42c;
+  
+    /* Paddings */
+    --padding-10xl: 29px;
+  
+    /* Border radiuses */
+    --br-base: 16px;
+  }
+  
+  #generate{
+    border: none;
+    background-color: transparent;
+    border-radius: 8px;
+    font-family: 'Josefin Sans';
+    font-size: large;
+    padding: 10px;
+  }
+  
+  #urlbar{
+    border: none;
+
+    padding: 10px;
+    padding-right: 100px;
+    font-size: 20px;
+    font-family: var(--font-source-sans-3);
+    
+
+
+    size: 200px;
+  }
+  
