@@ -1,3 +1,7 @@
+h4{
+  font-family: Raleway;
+}
+
 .qrgen-child {
     position: absolute;
     top: 0;
@@ -163,7 +167,7 @@
     left: 453px;
     width: 218px;
     height: 182px;
-    background-image: url(./public/pngwing-1@3x.png);
+    background-image: url(pngwing-1@3x.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;

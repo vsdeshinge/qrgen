@@ -16,6 +16,26 @@ const qr = require("qr-image");
 const fs = require("fs");
 const multer = require('multer');
 const path = require("path")
+const { MongoClient } = require('mongodb');
+
+
+const uri = 'mongodb+srv://maharshi:RWOKGITl2Yd7fhnA@cluster0.cnsknhn.mongodb.net/thechapristore?retryWrites=true&w=majority';
+
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+client.connect()
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
+        // You can start interacting with the database here
+    })
+    .catch(err => console.error('Error connecting to MongoDB Atlas', err));
+
+
+
+    const db = client.db('thechapristor'); // Replace with your actual database name
+    const collection = db.collection('signU');
 
 
 // import Jimp from "jimp";
@@ -34,20 +54,34 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 function generateQr(req,res,next){
+  
     
     
 
     try{
         var qr_svg = qr.image(req.body["url1"]);
         qr_svg.pipe(fs.createWriteStream('public/qr_image.png'));
+        
 
         res.setHeader
         password = true;
+
+        collection.insertOne(req.body)
+        .then(result => {
+            console.log(`Inserted ${result.insertedCount} document`);
+        })
+        .catch(err => console.error('Error inserting document', err))
+        
         
     }
     catch (error) {
-        console.error('QR Code Generation Error:', error);
-    }
+      if (error.message.includes('Bad data')) {
+          console.error('Invalid data for QR code generation.');
+          // Optionally, you can choose to return a specific response or take alternative actions.
+      } else {
+          console.error('QR Code Generation Error:', error);
+      }
+  }
     res.header("X-Content-Type-Options", "nosniff");
     res.header("X-Frame-Options", "DENY");
     res.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
@@ -63,6 +97,7 @@ function generateQr(req,res,next){
 
 app.use(generateQr);
 app.use(express.static("public"));
+//app.use(printFile)
 
   
 
@@ -99,6 +134,35 @@ app.post('/upload', upload.single('image'), (req, res) => {
   // Access the uploaded file information with req.file
   console.log('File uploaded:', req.file);
   res.send('File uploaded successfully.');
+});
+
+function printFile(req,res,next){
+  console.log(req.body);
+  res.header("X-Content-Type-Options", "nosniff");
+  res.header("X-Frame-Options", "DENY");
+  res.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+
+
+
+  next()
+
+}
+
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/login.html');
+});
+
+
+app.post('/login', (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  
+  console.log('Username:', username);
+  console.log('Password:', password);
+
+ 
+  res.sendFile(__dirname+"/public/login.html");
 });
   
 
