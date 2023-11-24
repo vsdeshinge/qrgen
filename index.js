@@ -19,6 +19,9 @@ const path = require("path")
 const { MongoClient } = require('mongodb');
 
 
+var flag=false;
+
+
 const uri = 'mongodb+srv://maharshi:RWOKGITl2Yd7fhnA@cluster0.cnsknhn.mongodb.net/thechapristore?retryWrites=true&w=majority';
 
 
@@ -66,11 +69,7 @@ function generateQr(req,res,next){
         res.setHeader
         password = true;
 
-        collection.insertOne(req.body)
-        .then(result => {
-            console.log(`Inserted ${result.insertedCount} document`);
-        })
-        .catch(err => console.error('Error inserting document', err))
+        
         
         
     }
@@ -107,6 +106,8 @@ app.get("/", (req, res) => {
     
 
 });
+
+
 
 //for upload image
 
@@ -153,17 +154,67 @@ app.get('/login', (req, res) => {
 });
 
 
+
+
+
+
+
 app.post('/login', (req, res) => {
-  const username = req.body.username;
+  
   const password = req.body.password;
 
-  
-  console.log('Username:', username);
-  console.log('Password:', password);
-
- 
-  res.sendFile(__dirname+"/public/login.html");
+  collection
+    .find({ username: req.body.username }, { username: 1, password: 1, _id: 0 })
+    .toArray()
+    .then(docs => {
+      console.log('Documents retrieved:', docs);
+      if (docs.length > 0) {
+        const singleObject = docs[0];
+        if (password === singleObject.password) {
+          console.log('Authentication successful');
+          res.sendFile(__dirname + '/public/index.html');
+          return; 
+        }
+      }
+      
+      
+      res.sendFile(__dirname + '/public/login.html');
+    })
+    .catch(err => {
+      console.error('Error retrieving documents', err);
+      res.status(500).send('Internal Server Error');
+    });
 });
+
+app.get('/singup',(req,res)=>{
+  req.sendFile(__dirname+"/public/signup.html")
+});
+
+app.post('/signup', (req, res) => {
+
+    const dataToInsert ={
+      firstname: req.body.firstname,
+      username : req.body.username,
+      mobilenumber: req.body.mobilenumber,
+      email: req.body.email,
+      password: req.body.password
+
+
+    }
+    collection.insertOne(dataToInsert)
+        .then(result => {
+
+            console.log(`Inserted ${result.insertedCount} document`);
+            res.sendFile(__dirname+"/public/login.html");
+            
+        })
+        .catch(err => console.error('Error inserting document', err));
+  
+});
+
+
+
+
   
 
 

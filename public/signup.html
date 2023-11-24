@@ -1,65 +1,62 @@
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>SignupPage</title>
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
     <div id="rectangle_2"  ></div>
     
-   
-    <img src="QRGEN.png" id="vector_110" />
-        
-        
-    
-    <!---code start-->
     <div class="center">
-        <!--logo design-->
+        
         <div class="logo">
            <img src="QRGEN.png" alt=""> 
         </div>
+    <form action="/signup" method="post">
+        <div class="txt_field">
+        <input type="text" id="fistname" name="firstname"required>
+        <label for="firstname">First Name</label>
+        </div>
+        
+        <div class="txt_field">
+        <input type="text" id="username" name="username" required>
+        <label for="username">Username</label>
+        </div>
+        
+        <div class="txt_field">
+        
+        <input type="number" name="mobilenumber" required>
+        <label for="mobilenumber">mobilenumber</label>
+        </div>
+
+
+        
+        <div class="txt_field">
+        <input type="email" id="email" name="email" required>
+        <label for="email">Email</label>
+
+        </div>
+        
+        
+        <div class="txt_field">
+        <input type="password" id="password" name="password" required>
+        <label for="password">Password</label>
+        </div>
         
 
+        <input type="submit" value="Sign Up">
 
-        
-        <form action="/signup" method="POST" id="">
-            <div class="txt_field">
-                <input type="text" required>
-                <span></span>
-                <label>First name</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" required>
-                <span></span>
-                <label>Last name</label>
-            </div>
-            <div class="txt_field">
-                <input type="number" required>
-                <span></span>
-                <label>Mobile No.</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" required>
-                <span></span>
-                <label>Email address</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Password</label>
-            </div>
-            <div class="AddressAdd">Add addres</div>
-            <input type="submit" value="Sign Up" href="index.html">
+        <div class="sign_link">
 
-            
-            <div class="signup_link"><a href="login.html">Click here to Login</a>
-                
-            </div>
-        </form>
-    </div>
+            <a href="/login">Click here to Login</a>
+        </div>
+    </form>
+
     
-
-
 </body>
 </html>
