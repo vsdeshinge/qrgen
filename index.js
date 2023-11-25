@@ -28,6 +28,9 @@ const uri = 'mongodb+srv://maharshi:RWOKGITl2Yd7fhnA@cluster0.cnsknhn.mongodb.ne
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
+//connection to the client
+
+
 client.connect()
     .then(() => {
         console.log('Connected to MongoDB Atlas');
@@ -39,6 +42,7 @@ client.connect()
 
     const db = client.db('thechapristor'); // Replace with your actual database name
     const collection = db.collection('signU');
+    const product = db.collection("product");
 
 
 // import Jimp from "jimp";
@@ -113,7 +117,7 @@ app.get("/", (req, res) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/'); // Specify the folder where uploaded files will be stored
+    cb(null, 'public/images'); // Specify the folder where uploaded files will be stored
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -121,12 +125,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-
-
-
-
-// Handle file upload
 app.post('/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
@@ -134,8 +132,17 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
   // Access the uploaded file information with req.file
   console.log('File uploaded:', req.file);
+  let a = req.body;
+  console.log(a);
   res.send('File uploaded successfully.');
 });
+
+
+
+
+
+
+
 
 function printFile(req,res,next){
   console.log(req.body);
@@ -149,14 +156,13 @@ function printFile(req,res,next){
 
 }
 
+
+
+//Login Page
+
 app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/login.html');
 });
-
-
-
-
-
 
 
 app.post('/login', (req, res) => {
@@ -186,6 +192,9 @@ app.post('/login', (req, res) => {
     });
 });
 
+
+// Sign UP PAGE
+
 app.get('/singup',(req,res)=>{
   req.sendFile(__dirname+"/public/signup.html")
 });
@@ -214,6 +223,29 @@ app.post('/signup', (req, res) => {
 
 
 
+app.post('/addproduct', upload.single('image'), (req, res) => {
+  const imagename = req.file.filename;
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+
+  // Access the uploaded file information with req.file
+  console.log('File uploaded:', req.file);
+  let a = req.body;
+  a["images"]=imagename;
+  console.log(a);
+  product.insertOne(a)
+      .then(result => {
+
+          console.log(`Inserted ${result.insertedCount} document`);
+          res.sendFile(__dirname+"/public/addproduct.html");
+          
+      })
+      .catch(err => console.error('Error inserting document', err));
+});
+
+
+
 
   
 
@@ -236,25 +268,6 @@ app.post("/generate",(req,res)=>{
     console.log(req.body);
 });
 
-
-
-
-// io.on('connection', (socket) => {
-//     console.log('A user connected');
-  
-//     // Send initial image to the client
-//     sendImageToClient(socket);
-  
-//     // Handle image request from the client
-//     socket.on('requestImage', () => {
-//       sendImageToClient(socket);
-//     });
-//   });
-
-//   function sendImageToClient(socket) {
-//     const imageBase64 = fs.readFileSync('qr_image.png', 'base64');
-//     socket.emit('updateImage', { image: imageBase64 });
-//   }
 
 
 // async function readQRCode(imagePath) {

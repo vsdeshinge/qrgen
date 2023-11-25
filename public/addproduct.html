@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="addproduct.css">
+    <title>Add Product</title>
+</head>
+<body>
+    <img id="logo" src="images/logo.svg" alt="logo">
+
+    <div class="center">
+        
+        <h1>Add New Product</h1>
+        <form id="productForm" action="/addproduct" method="post" enctype="multipart/form-data">
+            
+            <div class="txt_field">
+                <!-- Product Title -->
+                <input type="text" id="title" name="title" >
+                <label for="title">Product Type</label>
+                
+    
+            </div>
+            <div class="txt_field">
+                <!-- Product Title -->
+                <input type="text" id="title" name="ProductCat" >
+                <label for="ProductCat">Product Title:</label>
+                
+    
+                </div>
+            
+
+            <!-- Product Images -->
+            <div class="txt_field">
+                <input type="file" name="image" accept="image/*" required>
+                <label for="image"></label>
+
+            </div>
+
+            <!-- Product Description -->
+            <div class="txt_field1">
+                <label for="description">Product Description:</label>
+                <textarea id="description" name="description" rows="7" cols="45" ></textarea>
+            
+            </div>
+
+            <!-- Price -->
+            <div class="txt_field">
+                <input type="number" id="price" name="price" min="0" step="0.01" >
+                <label for="price">Price:</label>
+            </div>
+
+            <!-- Product Variations -->
+            <div class="txt_field">
+                <input type="text" id="variations" name="variations">
+                <label for="variations">Product Variations:</label>
+            </div>
+
+            <!-- Availability -->
+            <div class="txt_field">
+                <input type="checkbox" id="availability" name="availability" checked>
+                <label for="availability">Availability:</label>
+            </div>
+            
+
+            <!-- Shipping Information -->
+            <div class="txt_field">
+            
+            <input type="number" id="shippingCost" name="shippingCost">
+            
+            <label for="shippingCost">Shipping Cost:</label>
+            </div>
+            <div class="txt_field">
+            <input type="number" id="deliveryTime" name="deliveryTime">
+            
+            
+            
+            <label for="deliveryTime">Estimated Delivery Time:</label>
+            </div>
+            
+
+            <!-- Submit Button -->
+            <input type="submit"  value="add Product">
+        </form>
+        
+        
+    </div>
+
+    
+
+
+
+
+    </script>
+</body>
+</html>
