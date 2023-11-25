@@ -292,7 +292,7 @@ app.post("/generate",(req,res)=>{
   
 //   readQRCode(imagePath);
 //This code is for Product page
-const products = require('./product');
+
 
 app.get('/api/products', (req, res) => {
   product.find()
