@@ -291,7 +291,24 @@ app.post("/generate",(req,res)=>{
   
   
 //   readQRCode(imagePath);
-  
+//This code is for Product page
+const products = require('./product');
+
+app.get('/api/products', (req, res) => {
+  product.find()
+    .toArray()
+    .then(docs => {
+      //console.log('Documents retrieved:', docs);
+      res.json(docs);
+      
+      
+    })
+    .catch(err => {
+      console.error('Error retrieving documents', err);
+      res.status(500).send('Internal Server Error');
+    });
+  //res.json(products);
+});
   
 
 
