@@ -323,11 +323,8 @@ app.post("/generate",(req,res)=>{
   
   
 //   readQRCode(imagePath);
-<<<<<<< HEAD
   
 
-=======
->>>>>>> 601a7b8ea30bc893bca1da2cc4635c1af7f7d3a6
 //This code is for Product page
 const products = require('./product');
 
@@ -346,7 +343,6 @@ app.get('/api/products', (req, res) => {
     });
   //res.json(products);
 });
-<<<<<<< HEAD
 
 
 
@@ -366,8 +362,6 @@ app.get('/search', (req, res) => {
       console.error('Error retrieving documents', err);
       res.status(500).send('Internal Server Error');
     });
-=======
->>>>>>> 601a7b8ea30bc893bca1da2cc4635c1af7f7d3a6
   
   
 });
