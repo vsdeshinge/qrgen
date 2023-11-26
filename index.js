@@ -222,6 +222,7 @@ app.post('/signup', (req, res) => {
 });
 
 
+// this code is related to addto product page
 
 app.post('/addproduct', upload.single('image'), (req, res) => {
   const imagename = req.file.filename;
@@ -247,7 +248,38 @@ app.post('/addproduct', upload.single('image'), (req, res) => {
 
 
 
+app.post('/addproduct', upload.array('image',3), (req, res) => {
+  console.log(fil);
+  let imagename;
+  console.log(imagename);
+  if (!req.files) {
+    return res.status(400).send('No file uploaded.');
+  }
+  let b={
+    images:imagename,
+  }
   
+
+
+  // Access the uploaded file information with req.file
+  //console.log('File uploaded:', req.files);
+  let a = req.body;
+  a["images"]=imagename;
+  console.log(a);
+  product.insertOne(a)
+      .then(result => {
+
+          console.log(`Inserted ${result.insertedCount} document`);
+          res.sendFile(__dirname+"/public/addproduct.html");
+          
+      })
+      .catch(err => console.error('Error inserting document', err));
+});
+
+
+
+
+//Qr Generation
 
 
 app.post("/generate",(req,res)=>{
@@ -291,8 +323,13 @@ app.post("/generate",(req,res)=>{
   
   
 //   readQRCode(imagePath);
-//This code is for Product page
+<<<<<<< HEAD
+  
 
+=======
+>>>>>>> 601a7b8ea30bc893bca1da2cc4635c1af7f7d3a6
+//This code is for Product page
+const products = require('./product');
 
 app.get('/api/products', (req, res) => {
   product.find()
@@ -309,7 +346,33 @@ app.get('/api/products', (req, res) => {
     });
   //res.json(products);
 });
+<<<<<<< HEAD
+
+
+
+//product mens
+app.get('/search', (req, res) => {
+  const query = req.query.q;
+  console.log(query);
+  product.find({price:req.query.q})
+    .toArray()
+    .then(docs => {
+      console.log('Documents retrieved:', docs);
+      res.json(docs);
+      
+      
+    })
+    .catch(err => {
+      console.error('Error retrieving documents', err);
+      res.status(500).send('Internal Server Error');
+    });
+=======
+>>>>>>> 601a7b8ea30bc893bca1da2cc4635c1af7f7d3a6
   
+  
+});
+
+
 
 
 app.listen(PORT,()=>{
