@@ -124,18 +124,22 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
-app.post('/upload', upload.single('image'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-
-  // Access the uploaded file information with req.file
-  console.log('File uploaded:', req.file);
-  let a = req.body;
-  console.log(a);
-  res.send('File uploaded successfully.');
+const upload = multer({
+  storage: storage,
+   // Set a file size limit if needed
 });
+
+// app.post('/upload', upload.single('image'), (req, res) => {
+//   if (!req.file) {
+//     return res.status(400).send('No file uploaded.');
+//   }
+
+//   // Access the uploaded file information with req.file
+//   console.log('File uploaded:', req.file);
+//   let a = req.body;
+//   console.log(a);
+//   res.send('File uploaded successfully.');
+// });
 
 
 
@@ -224,45 +228,15 @@ app.post('/signup', (req, res) => {
 
 // this code is related to addto product page
 
-app.post('/addproduct', upload.single('image'), (req, res) => {
-  const imagename = req.file.filename;
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-
-  // Access the uploaded file information with req.file
-  console.log('File uploaded:', req.file);
-  let a = req.body;
-  a["images"]=imagename;
-  console.log(a);
-  product.insertOne(a)
-      .then(result => {
-
-          console.log(`Inserted ${result.insertedCount} document`);
-          res.sendFile(__dirname+"/public/addproduct.html");
-          
-      })
-      .catch(err => console.error('Error inserting document', err));
-});
-
-
-
-
-app.post('/addproduct', upload.array('image',3), (req, res) => {
-  console.log(fil);
-  let imagename;
-  console.log(imagename);
+app.post('/addproduct', upload.array('image',6), (req, res) => {
+  let imagename = req.files[0].filename;
   if (!req.files) {
     return res.status(400).send('No file uploaded.');
   }
-  let b={
-    images:imagename,
-  }
-  
-
 
   // Access the uploaded file information with req.file
-  //console.log('File uploaded:', req.files);
+  console.log('File uploaded:', req.files);
+  console.log(imagename);
   let a = req.body;
   a["images"]=imagename;
   console.log(a);
@@ -275,6 +249,37 @@ app.post('/addproduct', upload.array('image',3), (req, res) => {
       })
       .catch(err => console.error('Error inserting document', err));
 });
+
+
+
+
+// app.post('/addproduct', upload.array('image',6), (req, res) => {
+//   console.log(req.files);
+//   let imagename;
+//   console.log(imagename);
+//   if (!req.files) {
+//     return res.status(400).send('No file uploaded.');
+//   }
+//   let b={
+//     images:imagename,
+//   }
+  
+
+
+//   // Access the uploaded file information with req.file
+//   //console.log('File uploaded:', req.files);
+//   let a = req.body;
+//   a["images"]=imagename;
+//   console.log(a);
+//   product.insertOne(a)
+//       .then(result => {
+
+//           console.log(`Inserted ${result.insertedCount} document`);
+//           res.sendFile(__dirname+"/public/addproduct.html");
+          
+//       })
+//       .catch(err => console.error('Error inserting document', err));
+// });
 
 
 
