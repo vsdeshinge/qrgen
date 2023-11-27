@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="addproduct.css">
     <title>Add Product</title>
+
+
 </head>
 <body>
     <img id="logo" src="images/logo.svg" alt="logo">
@@ -53,14 +55,63 @@
             <!-- Product Variations -->
             <div class="txt_field">
                 <input type="text" id="variations" name="variations">
-                <label for="variations">Product Variations:</label>
+                <label for="variations">Product Variations</label>
             </div>
 
-            <!-- Availability -->
-            <div class="txt_field">
-                <input type="checkbox" id="availability" name="availability" checked>
-                <label for="availability">Availability:</label>
+
+           <!--checkbox-->
+           <label for="">size</label>
+
+           <div id="padding1">
+            
+           
+            <label for="checkbox1" class="checkbox-container" onclick="toggleCheckbox(this.querySelector('input'))">
+                <input type="checkbox" id="checkbox1" name="size" value="small">
+                <span class="checkmark" data-label="S"></span>
+              </label>
+              
+  
+              <label for="checkbox2" class="checkbox-container" onclick="toggleCheckbox(this.querySelector('input'))">
+                  <input type="checkbox" id="checkbox2"name="size" value="medium">
+                  <span class="checkmark" data-label="M"></span>
+              </label>
+  
+              <label for="checkbox3" class="checkbox-container" onclick="toggleCheckbox(this.querySelector('input'))">
+                  <input type="checkbox" id="checkbox3" name="size" value="large">
+                  <span class="checkmark" data-label="L"></span>
+              </label>
+
+              <label for="checkbox4" class="checkbox-container" onclick="toggleCheckbox(this.querySelector('input'))">
+                <input type="checkbox" id="checkbox4" name="size" value="xtralarge">
+                <span class="checkmark" data-label="XL"></span>
+            </label>
+
+
             </div>
+              
+
+
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
 
             <!-- Shipping Information -->
@@ -91,6 +142,11 @@
 
 
 
-    </script>
+      <script>
+    // JavaScript to toggle the checkbox state
+    function toggleCheckbox(checkbox) {
+      checkbox.checked = !checkbox.checked;
+        }
+  </script>
 </body>
 </html>

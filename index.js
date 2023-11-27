@@ -249,7 +249,7 @@ app.post('/addproduct', upload.single('image'), (req, res) => {
 
 
 app.post('/addproduct', upload.array('image',3), (req, res) => {
-  console.log(fil);
+ 
   let imagename;
   console.log(imagename);
   if (!req.files) {

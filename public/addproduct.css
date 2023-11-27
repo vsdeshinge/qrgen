@@ -163,3 +163,60 @@ height: 2px;
 .text_field1{
   background-color: rgba(245, 245, 245,1);
 }
+
+
+
+
+/* sizes designs
+
+/* Style for the checkbox container */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px; /* Space for the checkbox */
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hide the default checkbox */
+.checkbox-container input {
+  display: none;
+}
+
+/* Style for the custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #eee; /* Default background color */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for the checked state */
+.checkbox-container input:checked + .checkmark {
+  background-color: #000000; /* Custom color for checked state */
+}
+
+/* Style for the checkmark inside the checkbox */
+.checkmark:after {
+  content: attr(data-label); /* Display the label (e.g., "S") */
+  color: rgb(66, 64, 64);
+}
+
+/* Style for the checked state of the checkmark */
+.checkbox-container input:checked + .checkmark:after {
+  content: attr(data-label); /* Display the label for the checked state */
+  color: white;
+}
+
+
+#padding1{
+  padding-bottom: 50px;
+}
