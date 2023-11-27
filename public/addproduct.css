@@ -220,3 +220,7 @@ height: 2px;
 #padding1{
   padding-bottom: 50px;
 }
+
+.product-container{
+  position: absolute;
+}

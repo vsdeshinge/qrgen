@@ -8,7 +8,7 @@
 </head>
 <body>
    
-    <button type="button" onclick="searchProducts('men')">Men</button>
+    <button type="button" onclick="searchProducts('male')">Men</button>
     
 
 
@@ -35,10 +35,10 @@
                 products.forEach(product => {
                     const productDiv = document.createElement('div');
                     productDiv.classList.add('product');
-                    productDiv.innerHTML=`<h2> ${product.title}</h2>
-                    <h1>${product.images}</h1>
-                    <img src= "images/${product.images}" width="100px"/>
-                    <p>price: ${product.description}</p>`
+                    productDiv.innerHTML=`
+                    <img src= "images/${product.images}" width="100px" onClick="showProductDescription(${product.images})"/>
+                    <h2> ${product.title}</h2>
+                    <p>price: ${product.price}</p>`
                     
                     
         
@@ -48,7 +48,7 @@
 
            
             }
-
+           
                
 
             // Function to simulate adding to cart
@@ -80,18 +80,33 @@
             results.forEach(product => {
                     const productDiv = document.createElement('div');
                     productDiv.classList.add('product');
-                    productDiv.innerHTML=`<h2> ${product.title}</h2>
-                    <h1>${product.images}</h1>
+                    productDiv.innerHTML=`
+                    
                     <img src= "images/${product.images}" width="100px"/>
-                    <p>price: ${product.description}</p>`
+                    <h5> ${product.title}</h5>
+                    <p>price: ${product.price}</p>`
                     
                     
         
                     resultsDiv.appendChild(productDiv);
             });
 
+
+
             
         }
+
+        function showProductDescription(image) {
+            //const searchInput = document.getElementById('searchInput');
+            const query = image;
+
+
+            fetch(`/product/description?q=${query}`)
+                .then(response => response.json())
+                .then(results => displayResults(results))
+                .catch(error => console.error('Error:', error));
+        }
+
     </script>
 </body>
 </html>

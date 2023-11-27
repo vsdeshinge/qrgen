@@ -355,7 +355,7 @@ app.get('/api/products', (req, res) => {
 app.get('/search', (req, res) => {
   const query = req.query.q;
   console.log(query);
-  product.find({ProductCat:query})
+  product.find({gender:query})
     .toArray()
     .then(docs => {
       console.log('Documents retrieved:', docs);
