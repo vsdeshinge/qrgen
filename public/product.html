@@ -8,8 +8,14 @@
 </head>
 <body>
    
-    <button type="button" onclick="searchProducts()">Search</button>
+    <button type="button" onclick="searchProducts('men')">Men</button>
     
+
+
+    <button type="button" onclick="searchProducts('female')">Female</button>
+    
+
+    <button type="button" onclick="searchProducts('unisex')">Unisex</button>
     <div id="results"></div>
 
     <div class="product-container" id="productContainer"></div>
@@ -55,9 +61,10 @@
 
         });
 
-        function searchProducts() {
+        function searchProducts(gender) {
             //const searchInput = document.getElementById('searchInput');
-            const query = 599;
+            const query = gender;
+
 
             fetch(`/search?q=${query}`)
                 .then(response => response.json())

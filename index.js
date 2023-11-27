@@ -249,7 +249,7 @@ app.post('/addproduct', upload.single('image'), (req, res) => {
 
 
 app.post('/addproduct', upload.array('image',3), (req, res) => {
- 
+  console.log(fil);
   let imagename;
   console.log(imagename);
   if (!req.files) {
@@ -350,7 +350,7 @@ app.get('/api/products', (req, res) => {
 app.get('/search', (req, res) => {
   const query = req.query.q;
   console.log(query);
-  product.find({price:req.query.q})
+  product.find({ProductCat:query})
     .toArray()
     .then(docs => {
       console.log('Documents retrieved:', docs);
