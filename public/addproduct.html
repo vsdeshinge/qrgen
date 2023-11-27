@@ -60,10 +60,9 @@
 
 
            <!--checkbox-->
-           <label for="">size</label>
 
            <div id="padding1">
-            
+            <label for="">size</label>
            
             <label for="checkbox1" class="checkbox-container" onclick="toggleCheckbox(this.querySelector('input'))">
                 <input type="checkbox" id="checkbox1" name="size" value="small">
@@ -87,6 +86,26 @@
             </label>
 
 
+
+
+            </div>
+            <label for="">gender</label>
+            <div class="padding1">.
+                <label for="male" class="checkbox-container" onclick="uncheckOtherRadios(this.querySelector('input'))">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <span class="checkmark" data-label="Male"></span>
+                  </label>
+              
+                  <label for="female" class="checkbox-container" onclick="uncheckOtherRadios(this.querySelector('input'))">
+                    <input type="radio" id="female" name="gender" value="female">
+                    <span class="checkmark" data-label="Female"></span>
+                  </label>
+              
+              
+                  <label for="Unisex" class="checkbox-container" onclick="uncheckOtherRadios(this.querySelector('input'))">
+                    <input type="radio" id="Unisex" name="gender" value="Unisex">
+                    <span class="checkmark" data-label="Unisex"></span>
+                  </label>
             </div>
               
 
