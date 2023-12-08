@@ -72,6 +72,7 @@ h4{
   }
   .frame-inner,
   .frame4 {
+    /* padding: 5px; */
     top: 0;
     left: 0;
     width: 1728px;
@@ -400,4 +401,7 @@ h4{
     color: var(--black);
     font-family: var(--font-raleway);
   }
-  
+  /* #image2{
+    margin-top: 20px;
+    padding: 50px;
+  } */
